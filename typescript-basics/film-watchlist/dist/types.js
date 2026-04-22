@@ -1,6 +1,7 @@
-function formatFilm(film) {
-    return `${film.title}, ${film.year} , $ watched {film.watched}, ${film.rating ? film.rating : ""}`;
+export function formatFilm(film) {
+    return `${film.title}, ${film.year} , ${film.watched ? "watched" : "unwatched"}, ${film.rating ? film.rating : ""}`;
 }
-console.log(formatFilm);
-export {};
+export function getUnwatched(playlist) {
+    return playlist.films.filter((film) => film.watched === false);
+}
 //# sourceMappingURL=types.js.map

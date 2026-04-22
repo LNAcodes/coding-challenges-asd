@@ -15,7 +15,7 @@ export interface Playlist {
 }
 
 export function formatFilm(film: Film): string {
-  return `${film.title}, ${film.year} , $ watched {film.watched}, ${film.rating ? film.rating : ""}`;
+  return `${film.title}, ${film.year} , ${film.watched ? "watched" : "unwatched"}, ${film.rating ? film.rating : ""}`;
 }
 
 export function getUnwatched(playlist: Playlist): Film[] {
