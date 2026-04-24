@@ -1,13 +1,10 @@
 import { fetchAllBooks } from "./api.js";
-
-const tableBody = document.querySelector("tbody") as HTMLTableSectionElement;
-
-async function renderBooks(): Promise<void> {
-  const books = await fetchAllBooks();
-
-  for (const book of books) {
-    const row = document.createElement("tr");
-    row.innerHTML = `
+const tableBody = document.querySelector("tbody");
+async function renderBooks() {
+    const books = await fetchAllBooks();
+    for (const book of books) {
+        const row = document.createElement("tr");
+        row.innerHTML = `
       <td>
         <button class="button button-clear fav-btn">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="fav">
@@ -25,8 +22,8 @@ async function renderBooks(): Promise<void> {
         </button>
       </td>
     `;
-    tableBody.appendChild(row);
-  }
+        tableBody.appendChild(row);
+    }
 }
-
 renderBooks();
+//# sourceMappingURL=index.js.map
