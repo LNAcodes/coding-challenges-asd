@@ -20,7 +20,7 @@ async function renderBooks(): Promise<void> {
       <td>${book.author}</td>
       <td>${book.publisher}</td>
       <td>
-        <button class="button" onclick="location.href = 'detail.html?isbn=${book.isbn}'">
+        <button class="button" onclick="location.href = '/detail?isbn=${book.isbn}'">
           Detail
         </button>
       </td>

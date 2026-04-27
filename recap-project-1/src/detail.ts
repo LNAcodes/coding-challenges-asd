@@ -9,7 +9,9 @@ async function renderBook(): Promise<void> {
     console.error("No ISBN found in URL");
     return;
   }
+
   const book = await fetchBook(isbn);
+
   const mainElement = document.querySelector(
     "[data-js='book-detail']",
   ) as HTMLElement;
@@ -31,7 +33,7 @@ async function renderBook(): Promise<void> {
         <li><strong>Pages:</strong> ${book.numPages}</li>
       </ul>
 
-      <button class="button button-outline" onclick="location.href = 'index.html'">
+      <button class="button button-outline" onclick="location.href = '/'">
         Back
       </button>
     </div>
