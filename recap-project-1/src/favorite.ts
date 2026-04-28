@@ -1,8 +1,17 @@
-import { getFavorites, removeFavorite } from "./storage.js";
+import {
+  getFavorites,
+  removeFavorite,
+  updateFavoritesCount,
+} from "./storage.js";
 
 const tableBody = document.querySelector(
   "[data-js='favorite-list']",
 ) as HTMLTableSectionElement;
+
+const favoritesHeading = document.querySelector(
+  "[data-js='favorites-count-heading']",
+) as HTMLHeadingElement;
+favoritesHeading.textContent = `${getFavorites().length} Favorites on your list`;
 
 function renderFavorites(): void {
   const favoriteBooks = getFavorites();
@@ -39,6 +48,8 @@ function renderFavorites(): void {
     removeButton.addEventListener("click", () => {
       removeFavorite(book.isbn);
       row.remove();
+      updateFavoritesCount();
+      favoritesHeading.textContent = `${getFavorites().length} Favorites on your list`;
     });
 
     tableBody.appendChild(row);
@@ -46,3 +57,4 @@ function renderFavorites(): void {
 }
 
 renderFavorites();
+updateFavoritesCount();

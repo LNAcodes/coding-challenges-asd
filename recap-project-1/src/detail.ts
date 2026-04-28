@@ -1,4 +1,5 @@
 import { fetchBook } from "./api.js";
+import { updateFavoritesCount } from "./storage.js";
 
 const searchParams = new URLSearchParams(document.location.search);
 
@@ -45,3 +46,4 @@ async function renderBook(): Promise<void> {
 }
 
 renderBook();
+updateFavoritesCount();

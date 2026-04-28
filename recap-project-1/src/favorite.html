@@ -34,7 +34,10 @@
             <nav class="mainnav">
               <a href="/" class="mainnav-link">Books</a>
               <a href="/favorite" class="mainnav-link mainnav-link--active"
-                >Favorites <span class="mainnav-number">2</span></a
+                >Favorites
+                <span class="mainnav-number" data-js="favorites-count"
+                  >2</span
+                ></a
               >
             </nav>
           </div>
@@ -42,7 +45,7 @@
       </div>
     </header>
     <main class="container">
-      <h2>2 Favorites on your list</h2>
+      <h2 data-js="favorites-count-heading">2 Favorites on your list</h2>
       <section class="row filter-search">
         <form action="#" class="column">
           <label for="search">Search</label>

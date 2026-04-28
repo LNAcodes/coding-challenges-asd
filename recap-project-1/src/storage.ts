@@ -4,6 +4,16 @@ function saveFavorites(favorites: Book[]): void {
   localStorage.setItem("favorites", JSON.stringify(favorites));
 }
 
+export function updateFavoritesCount(): void {
+  const favoritesCountElement = document.querySelector(
+    "[data-js='favorites-count']",
+  ) as HTMLSpanElement;
+
+  if (!favoritesCountElement) return;
+
+  favoritesCountElement.textContent = String(getFavorites().length);
+}
+
 export function getFavorites(): Book[] {
   const favoritesString = localStorage.getItem("favorites");
 
