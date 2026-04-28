@@ -1,5 +1,7 @@
 import { fetchAllBooks } from "./api.js";
 
+import { addFavorite, removeFavorite } from "./storage.js";
+
 const tableBody = document.querySelector("tbody") as HTMLTableSectionElement;
 
 async function renderBooks(): Promise<void> {
@@ -25,6 +27,11 @@ async function renderBooks(): Promise<void> {
         </button>
       </td>
     `;
+    const favButton = row.querySelector(".fav-btn") as HTMLButtonElement;
+    favButton.addEventListener("click", () => {
+      console.log("fav button clicked!", book.isbn);
+      addFavorite(book);
+    });
     tableBody.appendChild(row);
   }
 }

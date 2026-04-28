@@ -1,0 +1,30 @@
+import type { Book } from "./types/book.js";
+
+function saveFavorites(favorites: Book[]): void {
+  console.log("saving favorites:", favorites);
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+}
+
+export function getFavorites(): Book[] {
+  const favoritesString = localStorage.getItem("favorites");
+
+  if (!favoritesString) {
+    return [];
+  }
+  return JSON.parse(favoritesString) as Book[];
+}
+
+export function addFavorite(book: Book): void {
+  console.log("adding favorite:", book.isbn);
+  const currentFavorites = getFavorites();
+  currentFavorites.push(book);
+  saveFavorites(currentFavorites);
+}
+
+export function removeFavorite(isbn: string): void {
+  const currentFavorites = getFavorites();
+  const updatedFavorites = currentFavorites.filter(
+    (book) => book.isbn !== isbn,
+  );
+  saveFavorites(updatedFavorites);
+}
