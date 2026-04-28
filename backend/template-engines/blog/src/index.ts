@@ -2,6 +2,9 @@ import express from "express";
 import nunjucks from "nunjucks";
 
 const app = express();
+
+app.use(express.static("publicj"));
+
 const port = 3001;
 
 nunjucks.configure("views", {
