@@ -22,7 +22,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css"
     />
     <link rel="stylesheet" href="style.css" />
-    <script type="module" src="./favorite.js"></script>
+    <script type="module" src="./favorite.ts"></script>
     <title>Document</title>
   </head>
   <body>
@@ -32,10 +32,8 @@
           <div class="column"><p class="logo">IT.Book.Library</p></div>
           <div class="column">
             <nav class="mainnav">
-              <a href="index.html" class="mainnav-link">Books</a>
-              <a
-                href="favourites.html"
-                class="mainnav-link mainnav-link--active"
+              <a href="/" class="mainnav-link">Books</a>
+              <a href="/favorite" class="mainnav-link mainnav-link--active"
                 >Favorites <span class="mainnav-number">2</span></a
               >
             </nav>
@@ -73,68 +71,7 @@
                 <th>&nbsp;</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <button class="button button-clear fav-btn">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      class="fav"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                  </button>
-                </td>
-                <td>Java Web Scraping Handbook</td>
-                <td>1001606140805</td>
-                <td>Kevin Sahin</td>
-                <td>Leanpub</td>
-                <td>
-                  <button
-                    class="button"
-                    onclick="location.href = 'detail.html'"
-                  >
-                    Detail
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <button class="button button-clear fav-btn">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      class="fav"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                  </button>
-                </td>
-                <td>Java Web Scraping Handbook</td>
-                <td>1001606140805</td>
-                <td>Kevin Sahin</td>
-                <td>Leanpub</td>
-                <td>
-                  <button
-                    class="button"
-                    onclick="location.href = 'detail.html'"
-                  >
-                    Detail
-                  </button>
-                </td>
-              </tr>
-            </tbody>
+            <tbody data-js="favorite-list"></tbody>
           </table>
         </div>
       </section>

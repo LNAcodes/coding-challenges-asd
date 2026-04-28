@@ -1,7 +1,6 @@
 import type { Book } from "./types/book.js";
 
 function saveFavorites(favorites: Book[]): void {
-  console.log("saving favorites:", favorites);
   localStorage.setItem("favorites", JSON.stringify(favorites));
 }
 
@@ -15,7 +14,6 @@ export function getFavorites(): Book[] {
 }
 
 export function addFavorite(book: Book): void {
-  console.log("adding favorite:", book.isbn);
   const currentFavorites = getFavorites();
   currentFavorites.push(book);
   saveFavorites(currentFavorites);

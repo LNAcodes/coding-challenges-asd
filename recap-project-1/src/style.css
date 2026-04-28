@@ -47,6 +47,11 @@ main .fav-btn {
   margin-bottom: -45px;
 }
 
+main .fav-btn.active svg {
+  color: var(--primary);
+  fill: var(--primary);
+}
+
 .fav {
   width: 100%;
   height: 100%;

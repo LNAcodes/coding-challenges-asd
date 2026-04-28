@@ -1,8 +1,12 @@
 import { fetchAllBooks } from "./api.js";
 
-import { addFavorite, removeFavorite } from "./storage.js";
+import { getFavorites, addFavorite, removeFavorite } from "./storage.js";
 
 const tableBody = document.querySelector("tbody") as HTMLTableSectionElement;
+
+const favoritesCountElement = document.querySelector(
+  "[data-js='favorites-count']",
+) as HTMLSpanElement;
 
 async function renderBooks(): Promise<void> {
   const books = await fetchAllBooks();
@@ -28,12 +32,28 @@ async function renderBooks(): Promise<void> {
       </td>
     `;
     const favButton = row.querySelector(".fav-btn") as HTMLButtonElement;
+    console.log("favButton:", favButton);
+
     favButton.addEventListener("click", () => {
-      console.log("fav button clicked!", book.isbn);
-      addFavorite(book);
+      const isFavorite = getFavorites().some(
+        (favorite) => favorite.isbn === book.isbn,
+      );
+      console.log("isFavorite:", isFavorite, book.isbn);
+
+      if (isFavorite) {
+        removeFavorite(book.isbn);
+      } else {
+        addFavorite(book);
+      }
+
+      favButton.classList.toggle("active");
+      console.log("classes:", favButton.classList);
+
+      favoritesCountElement.textContent = String(getFavorites().length);
     });
     tableBody.appendChild(row);
   }
 }
 
 renderBooks();
+favoritesCountElement.textContent = String(getFavorites().length);

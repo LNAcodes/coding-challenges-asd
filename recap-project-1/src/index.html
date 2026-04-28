@@ -22,7 +22,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css"
     />
     <link rel="stylesheet" href="style.css" />
-    <script type="module" src="./index.js"></script>
+    <script type="module" src="./index.ts"></script>
     <title>Document</title>
   </head>
   <body>
@@ -32,11 +32,12 @@
           <div class="column"><p class="logo">IT.Book.Library</p></div>
           <div class="column">
             <nav class="mainnav">
-              <a href="index.html" class="mainnav-link mainnav-link--active"
-                >Books</a
-              >
-              <a href="favorite.html" class="mainnav-link"
-                >Favorites <span class="mainnav-number">2</span></a
+              <a href="/" class="mainnav-link mainnav-link--active">Books</a>
+              <a href="/favorite" class="mainnav-link"
+                >Favorites
+                <span class="mainnav-number" data-js="favorites-count"
+                  >2</span
+                ></a
               >
             </nav>
           </div>
