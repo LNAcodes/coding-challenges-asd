@@ -1,7 +1,7 @@
 [
   {
     "title": "Black: The Absence, Not the Presence, of Color",
-    "image": "colorful-umbrella.jpg",
+    "image": "colorful-umbrella.jpeg",
     "author": "Peter Parker",
     "createdAt": 1743120000,
     "teaser": "Scientifically, black is not a color but rather the absence of all colors, occurring when an object absorbs nearly all light wavelengths instead of reflecting them.",
@@ -9,7 +9,7 @@
   },
   {
     "title": "Flowers: Nature's Muse for Design",
-    "image": "flowers.jpg",
+    "image": "flowers.jpeg",
     "author": "Peter Parker",
     "createdAt": 1745452800,
     "teaser": "Flowers endlessly inspire diverse design fields, from fashion to architecture, with their colors, patterns, forms, and functional structures, reminding us that nature is the ultimate muse for creativity.",
@@ -17,7 +17,7 @@
   },
   {
     "title": "UDesign's Harmony: Core Purpose and Supporting Details",
-    "image": "sailing.jpg",
+    "image": "sailing.jpeg",
     "author": "Peter Parker",
     "createdAt": 1748736000,
     "teaser": "Discover how distinguishing between the major core and minor supporting details in design creates a harmonious and impactful final product.",

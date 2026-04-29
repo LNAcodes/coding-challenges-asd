@@ -1,6 +1,7 @@
 import express from "express";
 import nunjucks from "nunjucks";
 import { readFileSync } from "fs";
+import slugify from "slugify";
 
 interface Post {
   title: string;
@@ -9,6 +10,7 @@ interface Post {
   createdAt: number;
   teaser: string;
   content: string;
+  slug: string;
 }
 
 const postsJson = readFileSync("src/posts.json", "utf-8");
@@ -20,6 +22,7 @@ const posts = JSON.parse(postsJson).map((post: Post) => ({
     month: "long",
     day: "numeric",
   }),
+  slug: slugify(post.title, { lower: true }),
 }));
 
 const app = express();
@@ -35,6 +38,11 @@ nunjucks.configure("views", {
 
 app.get("/", (req, res) => {
   res.render("index.html", { posts: posts });
+});
+
+app.get("/posts/:slug", (req, res) => {
+  const foundPost = posts.find((post: Post) => post.slug === req.params.slug);
+  res.render("post.html", { post: foundPost });
 });
 
 app.listen(port, () => {
