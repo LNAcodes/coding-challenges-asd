@@ -4,7 +4,11 @@ import {
   updateFavoritesCount,
 } from "./storage.js";
 
-import { filterByPublisher, filterByTitle } from "./utils.js";
+import {
+  filterByPublisher,
+  filterByTitle,
+  populatePublisherFilter,
+} from "./utils.js";
 
 import type { Book } from "./types/book.js";
 
@@ -70,6 +74,9 @@ function renderFavoritesRows(favoritesToRender: Book[]): void {
 }
 
 const favoriteBooks = getFavorites();
+
+populatePublisherFilter(favoriteBooks, searchPublisher);
+
 renderFavoritesRows(favoriteBooks);
 
 searchTitle.addEventListener("input", () => {

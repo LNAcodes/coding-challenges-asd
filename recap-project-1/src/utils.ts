@@ -11,3 +11,16 @@ export function filterByPublisher(books: Book[], searchTerm: string): Book[] {
     book.publisher.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 }
+
+export function populatePublisherFilter(
+  books: Book[],
+  selectElement: HTMLSelectElement,
+): void {
+  const uniquePublishers = new Set(books.map((book) => book.publisher));
+  for (const publisher of uniquePublishers) {
+    const option = document.createElement("option");
+    option.value = publisher;
+    option.textContent = publisher;
+    selectElement.appendChild(option);
+  }
+}

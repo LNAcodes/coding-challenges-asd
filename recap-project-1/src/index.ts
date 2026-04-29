@@ -7,7 +7,11 @@ import {
   updateFavoritesCount,
 } from "./storage.js";
 
-import { filterByPublisher, filterByTitle } from "./utils.js";
+import {
+  filterByPublisher,
+  filterByTitle,
+  populatePublisherFilter,
+} from "./utils.js";
 
 import type { Book } from "./types/book.js";
 
@@ -78,6 +82,8 @@ async function renderBooks(): Promise<void> {
   const books = await fetchAllBooks();
 
   booksCountElement.textContent = `${books.length} Books displayed`;
+
+  populatePublisherFilter(books, searchPublisher);
 
   renderBookRows(books);
 
