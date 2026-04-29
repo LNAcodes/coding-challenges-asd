@@ -45,6 +45,10 @@ app.get("/posts/:slug", (req, res) => {
   res.render("post.html", { post: foundPost });
 });
 
+app.get("/contact", (req, res) => {
+  res.render("contact.html");
+});
+
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });

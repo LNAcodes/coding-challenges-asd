@@ -1,0 +1,10 @@
+{% macro contactCard(label, placeholder, type) %}
+<div class="form-floating">
+  {% if type == "textarea" %}
+  <textarea class="form-control" placeholder="{{placeholder}}"></textarea>
+  {% else %}
+  <input class="form-control" type="{{type}}" placeholder="{{placeholder}}" />
+  {% endif %}
+  <label>{{ label }}</label>
+</div>
+{% endmacro %}
