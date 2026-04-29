@@ -7,6 +7,10 @@ import {
   updateFavoritesCount,
 } from "./storage.js";
 
+import { filterByPublisher, filterByTitle } from "./utils.js";
+
+import type { Book } from "./types/book.js";
+
 const booksCountElement = document.querySelector(
   "[data-js='books-count']",
 ) as HTMLHeadingElement;
@@ -17,12 +21,18 @@ const favoritesCountElement = document.querySelector(
   "[data-js='favorites-count']",
 ) as HTMLSpanElement;
 
-async function renderBooks(): Promise<void> {
-  const books = await fetchAllBooks();
+const searchTitle = document.querySelector(
+  "[data-js='search-title']",
+) as HTMLInputElement;
 
-  booksCountElement.textContent = `${books.length} Books displayed`;
+const searchPublisher = document.querySelector(
+  "[data-js='search-publisher']",
+) as HTMLSelectElement;
 
-  for (const book of books) {
+function renderBookRows(booksToRender: Book[]): void {
+  tableBody.innerHTML = "";
+
+  for (const book of booksToRender) {
     const row = document.createElement("tr");
     row.innerHTML = `
       <td>
@@ -61,6 +71,30 @@ async function renderBooks(): Promise<void> {
     });
     tableBody.appendChild(row);
   }
+}
+
+async function renderBooks(): Promise<void> {
+  const books = await fetchAllBooks();
+
+  booksCountElement.textContent = `${books.length} Books displayed`;
+
+  renderBookRows(books);
+
+  searchTitle.addEventListener("input", () => {
+    const searchTerm = searchTitle.value;
+
+    const filteredBooks = filterByTitle(books, searchTerm);
+
+    renderBookRows(filteredBooks);
+  });
+
+  searchPublisher.addEventListener("change", () => {
+    const selectedPublisher = searchPublisher.value;
+
+    const filteredBooks = filterByPublisher(books, selectedPublisher);
+
+    renderBookRows(filteredBooks);
+  });
 }
 
 renderBooks();

@@ -4,6 +4,8 @@ import {
   updateFavoritesCount,
 } from "./storage.js";
 
+import { filterByPublisher, filterByTitle } from "./utils.js";
+
 const tableBody = document.querySelector(
   "[data-js='favorite-list']",
 ) as HTMLTableSectionElement;
