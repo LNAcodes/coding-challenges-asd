@@ -52,6 +52,7 @@ function renderBookRows(booksToRender: Book[]): void {
         </button>
       </td>
     `;
+
     const favButton = row.querySelector(".fav-btn") as HTMLButtonElement;
 
     favButton.addEventListener("click", () => {

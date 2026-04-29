@@ -6,6 +6,8 @@ import {
 
 import { filterByPublisher, filterByTitle } from "./utils.js";
 
+import type { Book } from "./types/book.js";
+
 const tableBody = document.querySelector(
   "[data-js='favorite-list']",
 ) as HTMLTableSectionElement;
@@ -13,12 +15,21 @@ const tableBody = document.querySelector(
 const favoritesHeading = document.querySelector(
   "[data-js='favorites-count-heading']",
 ) as HTMLHeadingElement;
+
 favoritesHeading.textContent = `${getFavorites().length} Favorites on your list`;
 
-function renderFavorites(): void {
-  const favoriteBooks = getFavorites();
+const searchTitle = document.querySelector(
+  "[data-js='search-title']",
+) as HTMLInputElement;
 
-  for (const book of favoriteBooks) {
+const searchPublisher = document.querySelector(
+  "[data-js='search-publisher']",
+) as HTMLSelectElement;
+
+function renderFavoritesRows(favoritesToRender: Book[]): void {
+  tableBody.innerHTML = "";
+
+  for (const book of favoritesToRender) {
     const row = document.createElement("tr");
     row.innerHTML = `
 <td>
@@ -58,5 +69,23 @@ function renderFavorites(): void {
   }
 }
 
-renderFavorites();
+const favoriteBooks = getFavorites();
+renderFavoritesRows(favoriteBooks);
+
+searchTitle.addEventListener("input", () => {
+  const searchTerm = searchTitle.value;
+
+  const filteredBooks = filterByTitle(favoriteBooks, searchTerm);
+
+  renderFavoritesRows(filteredBooks);
+});
+
+searchPublisher.addEventListener("change", () => {
+  const selectedPublisher = searchPublisher.value;
+
+  const filteredBooks = filterByPublisher(favoriteBooks, selectedPublisher);
+
+  renderFavoritesRows(filteredBooks);
+});
+
 updateFavoritesCount();
