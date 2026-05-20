@@ -4,8 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
   </head>
   <body>
-    <h1>Burn on Read</h1>
+    <main class="container"><h1>Burn on Read</h1></main>
+    <form action="/messages" method="post">
+      <h2>Write a secret message</h2>
+      <p>
+        <label for="message">Message required</label>
+        <textarea
+          type="text"
+          name="message"
+          placeholder="Your secret message ..."
+        ></textarea>
+      </p>
+      <p>
+        <button>Create Message</button>
+      </p>
+    </form>
   </body>
 </html>

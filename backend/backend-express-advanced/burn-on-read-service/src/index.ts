@@ -3,6 +3,7 @@ import nunjucks from "nunjucks";
 import path from "node:path";
 import { logger } from "./middleware/logger.js";
 import { ensureLogFile } from "./middleware/logger.js";
+import messagesRouter from "./routes/messages.js";
 
 const LOG_FILE = path.join(process.cwd(), "logs", "logs.txt");
 
@@ -10,6 +11,8 @@ const app = express();
 
 app.use(express.static("public"));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(messagesRouter);
 
 const port = process.env.PORT || "3000";
 
