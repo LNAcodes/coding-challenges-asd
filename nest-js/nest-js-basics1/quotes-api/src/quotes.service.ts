@@ -66,4 +66,11 @@ export class QuotesService {
     const randomQuotes = allQuotes[randomIndex];
     return randomQuotes;
   }
+
+  getQuotesByAuthor(author: string): object[] {
+    return this.getAllQuotes().filter(
+      (quotes) =>
+
+    )
+  }
 }
