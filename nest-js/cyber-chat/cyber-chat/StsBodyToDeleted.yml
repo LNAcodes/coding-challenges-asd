@@ -5,7 +5,7 @@ info:
 
 http:
   method: DELETE
-  url: "{{baseURL}}\t/comments/:id/"
+  url: "{{baseURL}}comments/:id/"
   params:
     - name: id
       value: ""
