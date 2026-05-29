@@ -5,7 +5,14 @@ info:
 
 http:
   method: POST
-  url: "{{baseURL}}/threads"
+  url: "{{baseURL}}threads"
+  body:
+    type: json
+    data: |-
+      {
+        "title": "Test",
+        "body": "Hallo"
+      }
   auth: inherit
 
 settings:

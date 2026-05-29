@@ -5,11 +5,7 @@ info:
 
 http:
   method: DELETE
-  url: "{{baseURL}}threads/:id/"
-  params:
-    - name: id
-      value: ""
-      type: path
+  url: "{{baseURL}}threads/741fbf6b-07f8-4975-9fe3-4624445e114c"
   auth: inherit
 
 settings:

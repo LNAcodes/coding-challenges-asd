@@ -5,6 +5,7 @@ import { Thread } from './thread.entity';
 import { CreateThreadDto } from './dto/create-thread.dto';
 import { CreateCommentDto } from '../comments/dto/create-comment.dto';
 import { Comment } from '../comments/comment.entity';
+import { UpdateThreadDto } from './dto/update-thread.dto';
 
 @Injectable()
 export class ThreadsService {
@@ -44,6 +45,12 @@ export class ThreadsService {
     const thread = await this.findOne(threadId);
     const comment = this.comments.create({ ...createCommentDto, thread });
     return this.comments.save(comment);
+  }
+
+  async update(id: string, dto: UpdateThreadDto) {
+    const thread = await this.findOne(id);
+    Object.assign(thread, dto);
+    return this.threads.save(thread);
   }
 
   async delete(id: string): Promise<void> {

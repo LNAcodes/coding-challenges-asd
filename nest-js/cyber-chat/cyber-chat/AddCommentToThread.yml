@@ -5,11 +5,14 @@ info:
 
 http:
   method: POST
-  url: "{{baseURL}}/threads/:id/comments"
-  params:
-    - name: id
-      value: ""
-      type: path
+  url: "{{baseURL}}threads/b57d45ea-4381-4ec9-9da5-a4ed6f5834bd/comments"
+  body:
+    type: json
+    data: |-
+      {
+        "body": "Das ist mein Kommentar",
+        "author": "LNA"
+      }
   auth: inherit
 
 settings:

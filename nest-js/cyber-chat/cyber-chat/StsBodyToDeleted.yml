@@ -5,11 +5,7 @@ info:
 
 http:
   method: DELETE
-  url: "{{baseURL}}comments/:id/"
-  params:
-    - name: id
-      value: ""
-      type: path
+  url: "{{baseURL}}comments/c89d4c0e-fc19-4e44-b48c-3c510077da59"
   auth: inherit
 
 settings:

@@ -5,13 +5,8 @@ info:
 
 http:
   method: GET
-  url: "{{baseURL}}/threads"
+  url: "{{baseURL}}threads"
   auth: inherit
-
-runtime:
-  variables:
-    - name: baseURL
-      value: http://localhost:3000/
 
 settings:
   encodeUrl: true

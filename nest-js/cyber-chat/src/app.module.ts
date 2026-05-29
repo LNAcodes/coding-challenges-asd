@@ -6,6 +6,8 @@ import { CommentsModule } from './comments/comments.module';
 import { Thread } from './threads/thread.entity';
 import { Comment } from './comments/comment.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -20,6 +22,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     }),
     ThreadsModule,
     CommentsModule,
+    AuthModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

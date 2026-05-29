@@ -1,5 +1,15 @@
-import { Controller, Get, Post, Delete, Param, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Delete,
+  Param,
+  Body,
+  Patch,
+  ParseUUIDPipe,
+} from '@nestjs/common';
 import { CreateThreadDto } from './dto/create-thread.dto';
+import { UpdateThreadDto } from './dto/update-thread.dto';
 import { CreateCommentDto } from '../comments/dto/create-comment.dto';
 import { ThreadsService } from './threads.service';
 
@@ -28,6 +38,14 @@ export class ThreadsController {
     @Body() createCommentDto: CreateCommentDto,
   ) {
     return this.threadsService.addComment(threadId, createCommentDto);
+  }
+
+  @Patch(':id')
+  update(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() updateThreadDto: UpdateThreadDto,
+  ) {
+    return this.threadsService.update(id, updateThreadDto);
   }
 
   @Delete(':id')
