@@ -7,6 +7,8 @@ import {
   Body,
   Patch,
   ParseUUIDPipe,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
 import { CreateThreadDto } from './dto/create-thread.dto';
 import { UpdateThreadDto } from './dto/update-thread.dto';
@@ -23,7 +25,7 @@ export class ThreadsController {
   }
 
   @Get(':id')
-  FindOne(@Param('id') id: string) {
+  FindOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.threadsService.findOne(id);
   }
 
@@ -34,7 +36,7 @@ export class ThreadsController {
 
   @Post(':id/comments')
   addComment(
-    @Param('id') threadId: string,
+    @Param('id', ParseUUIDPipe) threadId: string,
     @Body() createCommentDto: CreateCommentDto,
   ) {
     return this.threadsService.addComment(threadId, createCommentDto);
@@ -49,7 +51,8 @@ export class ThreadsController {
   }
 
   @Delete(':id')
-  delete(@Param('id') id: string) {
+  @HttpCode(HttpStatus.NO_CONTENT)
+  delete(@Param('id', ParseUUIDPipe) id: string) {
     return this.threadsService.delete(id);
   }
 }

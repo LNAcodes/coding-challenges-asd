@@ -29,6 +29,7 @@ export class CommentsService {
     });
   }
 
+  // Comment stays in DB
   async softDelete(id: string): Promise<void> {
     await this.findOneEntity(id);
     await this.comments.update(id, { body: 'deleted' });
