@@ -11,20 +11,20 @@ import { Comment } from '../comments/comment.entity';
 @Entity('threads')
 export class Thread {
   @PrimaryGeneratedColumn('uuid')
-  id!: string;
+  id: string;
 
   @Column({ type: 'varchar', length: 150 })
-  title!: string;
+  title: string;
 
   @Column({ type: 'text' })
-  body!: string;
+  body: string;
 
   @Column({ type: 'varchar', length: 100 })
-  author!: string;
+  author: string;
 
   @CreateDateColumn({ type: 'datetime' })
-  createdAt!: Date;
+  createdAt: Date;
 
   @OneToMany(() => Comment, (comment) => comment.thread)
-  comments!: Comment[];
+  comments: Comment[];
 }

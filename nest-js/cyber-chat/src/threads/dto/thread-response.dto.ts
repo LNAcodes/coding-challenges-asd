@@ -1,20 +1,24 @@
 import { Expose, Type } from 'class-transformer';
-import { CreateDateColumn } from 'typeorm';
+import { CommentResponseDto } from '../../comments/dto/comment-response.dto';
 
 export class ThreadResponseDto {
   @Expose()
-  id!: string;
+  id: string;
 
   @Expose()
-  title!: string;
+  title: string;
 
   @Expose()
-  body!: string;
+  body: string;
 
   @Expose()
-  author!: string;
+  author: string;
 
   @Expose()
   @Type(() => Date)
-  createdAt!: Date;
+  createdAt: Date;
+
+  @Expose()
+  @Type(() => CommentResponseDto)
+  comments: CommentResponseDto[];
 }

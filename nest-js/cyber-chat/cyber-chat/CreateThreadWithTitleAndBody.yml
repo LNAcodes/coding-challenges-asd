@@ -10,8 +10,9 @@ http:
     type: json
     data: |-
       {
-        "title": "Test",
-        "body": "Hallo"
+        "title": "Erster Thread",
+        "body": "Das ist ein Testthread",
+        "author": "lna"
       }
   auth: inherit
 

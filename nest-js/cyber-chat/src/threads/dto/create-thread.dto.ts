@@ -4,15 +4,15 @@ export class CreateThreadDto {
   @IsString()
   @IsNotEmpty()
   @MaxLength(150)
-  title!: string;
+  title: string;
 
   @IsString()
   @IsNotEmpty()
   @MaxLength(1000)
-  body!: string;
+  body: string;
 
   @IsString()
   @IsNotEmpty()
   @MaxLength(100)
-  author!: string;
+  author: string;
 }
