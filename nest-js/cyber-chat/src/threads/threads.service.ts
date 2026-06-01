@@ -6,6 +6,9 @@ import { CreateThreadDto } from './dto/create-thread.dto';
 import { CreateCommentDto } from '../comments/dto/create-comment.dto';
 import { Comment } from '../comments/comment.entity';
 import { UpdateThreadDto } from './dto/update-thread.dto';
+import { ThreadResponseDto } from './dto/thread-response.dto';
+import { plainToInstance } from 'class-transformer';
+import { CommentResponseDto } from '../comments/dto/comment-response.dto';
 
 @Injectable()
 export class ThreadsService {
@@ -17,40 +20,58 @@ export class ThreadsService {
     private readonly comments: Repository<Comment>,
   ) {}
 
-  async findAll(): Promise<Thread[]> {
-    return this.threads.find();
-  }
-
-  async findOne(id: string): Promise<Thread> {
+  private async findOneEntity(id: string): Promise<Thread> {
     const thread = await this.threads.findOne({
       where: { id },
       relations: { comments: true },
     });
-
     if (!thread) {
-      throw new NotFoundException(`Thread with ID ${id} not found`);
+      throw new NotFoundException(`Thread with Id ${id} not found`);
     }
     return thread;
   }
 
-  async create(createThreadDto: CreateThreadDto): Promise<Thread> {
+  async findAll(): Promise<ThreadResponseDto[]> {
+    const allThreads = await this.threads.find();
+    return plainToInstance(ThreadResponseDto, allThreads, {
+      excludeExtraneousValues: true,
+    });
+  }
+
+  async findOne(id: string): Promise<ThreadResponseDto> {
+    const thread = await this.findOneEntity(id);
+    return plainToInstance(ThreadResponseDto, thread, {
+      excludeExtraneousValues: true,
+    });
+  }
+
+  async create(createThreadDto: CreateThreadDto): Promise<ThreadResponseDto> {
     const thread = this.threads.create(createThreadDto);
-    return this.threads.save(thread);
+    const savedThread = await this.threads.save(thread);
+    return plainToInstance(ThreadResponseDto, savedThread, {
+      excludeExtraneousValues: true,
+    });
   }
 
   async addComment(
     threadId: string,
     createCommentDto: CreateCommentDto,
-  ): Promise<Comment> {
-    const thread = await this.findOne(threadId);
+  ): Promise<CommentResponseDto> {
+    const thread = await this.findOneEntity(threadId);
     const comment = this.comments.create({ ...createCommentDto, thread });
-    return this.comments.save(comment);
+    const savedComment = await this.comments.save(comment);
+    return plainToInstance(CommentResponseDto, savedComment, {
+      excludeExtraneousValues: true,
+    });
   }
 
-  async update(id: string, dto: UpdateThreadDto) {
-    const thread = await this.findOne(id);
+  async update(id: string, dto: UpdateThreadDto): Promise<ThreadResponseDto> {
+    const thread = await this.findOneEntity(id);
     Object.assign(thread, dto);
-    return this.threads.save(thread);
+    const savedThread = await this.threads.save(thread);
+    return plainToInstance(ThreadResponseDto, savedThread, {
+      excludeExtraneousValues: true,
+    });
   }
 
   async delete(id: string): Promise<void> {
