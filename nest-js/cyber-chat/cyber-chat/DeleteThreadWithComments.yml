@@ -1,7 +1,7 @@
 info:
   name: DeleteThreadWithComments
   type: http
-  seq: 11
+  seq: 9
 
 http:
   method: DELETE
