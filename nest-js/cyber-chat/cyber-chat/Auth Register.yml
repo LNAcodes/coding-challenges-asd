@@ -1,0 +1,22 @@
+info:
+  name: Auth Register
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{baseURL}}auth/register"
+  body:
+    type: json
+    data: |-
+      {
+        "username": "testuser",
+        "password": "geheim1234"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
