@@ -6,11 +6,13 @@ import {
   ParseUUIDPipe,
   HttpCode,
   HttpStatus,
-  Request,
+  Req,
 } from '@nestjs/common';
 import { CommentsService } from './comments.service';
 import type { AuthenticatedRequest } from '../common/types/authenticated-request.type';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
+@ApiBearerAuth()
 @Controller('comments')
 export class CommentsController {
   constructor(private readonly commentsService: CommentsService) {}
@@ -23,9 +25,9 @@ export class CommentsController {
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
   delete(
-    @Request() request: AuthenticatedRequest,
+    @Req() request: AuthenticatedRequest,
     @Param('id', ParseUUIDPipe) id: string,
   ) {
-    return this.commentsService.softDelete(id);
+    return this.commentsService.softDelete(id, request.user.username);
   }
 }

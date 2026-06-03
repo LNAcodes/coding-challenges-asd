@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ForbiddenException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Comment } from './comment.entity';
@@ -30,8 +34,11 @@ export class CommentsService {
   }
 
   // Comment stays in DB
-  async softDelete(id: string): Promise<void> {
-    await this.findOneEntity(id);
+  async softDelete(id: string, username: string): Promise<void> {
+    const comment = await this.findOneEntity(id);
+    if (comment.author !== username) {
+      throw new ForbiddenException('You can only delete your own comments');
+    }
     await this.comments.update(id, { body: 'deleted' });
   }
 }

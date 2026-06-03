@@ -18,7 +18,9 @@ import { CreateCommentDto } from '../comments/dto/create-comment.dto';
 import { ThreadsService } from './threads.service';
 import { PaginationQueryDto } from '../common/dto/pagination-query.dto';
 import type { AuthenticatedRequest } from '../common/types/authenticated-request.type';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
+@ApiBearerAuth()
 @Controller('threads')
 export class ThreadsController {
   constructor(private readonly threadsService: ThreadsService) {}
