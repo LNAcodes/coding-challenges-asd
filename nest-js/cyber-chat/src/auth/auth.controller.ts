@@ -11,6 +11,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { LoginDto } from './LoginDto';
 import { UsersService } from '../users/users.service';
 import { CreateUserDto } from '../users/dto/create-user.dto';
+import { Public } from '../common/decorators/public.decorator';
 
 type AuthenticatedRequest = Request & {
   user: { id: string; username: string };
@@ -22,18 +23,20 @@ export class AuthController {
     private readonly usersService: UsersService,
   ) {}
 
+  @Public()
   @Post('register')
   register(@Body() createUserDto: CreateUserDto) {
     return this.usersService.createUser(createUserDto);
   }
 
-  @UseGuards(AuthGuard('local')) // uses local strategy to append user to request
+  @Public()
+  @UseGuards(AuthGuard('local'))
   @Post('login')
   login(@Request() request: AuthenticatedRequest, @Body() _loginDto: LoginDto) {
     return this.authService.login(request.user);
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AuthGuard('jwt'))replaced by APP_GUARD + JWTAuthGuard in AppModule.ts
   @Get('me')
   me(@Request() request: AuthenticatedRequest) {
     return request.user;
