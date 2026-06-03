@@ -12,10 +12,7 @@ import { LoginDto } from './LoginDto';
 import { UsersService } from '../users/users.service';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { Public } from '../common/decorators/public.decorator';
-
-type AuthenticatedRequest = Request & {
-  user: { id: string; username: string };
-};
+import type { AuthenticatedRequest } from '../common/types/authenticated-request.type';
 @Controller('auth')
 export class AuthController {
   constructor(

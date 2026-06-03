@@ -5,7 +5,7 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 export class User {
   @PrimaryGeneratedColumn('uuid')
   @Expose()
-  id: string;
+  userId: string;
 
   @Column({ unique: true })
   @Expose()

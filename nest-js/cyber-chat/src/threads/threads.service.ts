@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ForbiddenException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Thread } from './thread.entity';
@@ -71,8 +75,11 @@ export class ThreadsService {
     });
   }
 
-  async create(createThreadDto: CreateThreadDto): Promise<ThreadResponseDto> {
-    const thread = this.threads.create(createThreadDto);
+  async create(
+    createThreadDto: CreateThreadDto,
+    author: string,
+  ): Promise<ThreadResponseDto> {
+    const thread = this.threads.create({ ...createThreadDto, author });
     const savedThread = await this.threads.save(thread);
     return plainToInstance(ThreadResponseDto, savedThread, {
       excludeExtraneousValues: true,
@@ -82,17 +89,29 @@ export class ThreadsService {
   async addComment(
     threadId: string,
     createCommentDto: CreateCommentDto,
+    author: string,
   ): Promise<CommentResponseDto> {
     const thread = await this.findOneEntity(threadId);
-    const comment = this.comments.create({ ...createCommentDto, thread });
+    const comment = this.comments.create({
+      ...createCommentDto,
+      thread,
+      author,
+    });
     const savedComment = await this.comments.save(comment);
     return plainToInstance(CommentResponseDto, savedComment, {
       excludeExtraneousValues: true,
     });
   }
 
-  async update(id: string, dto: UpdateThreadDto): Promise<ThreadResponseDto> {
+  async update(
+    id: string,
+    dto: UpdateThreadDto,
+    username: string,
+  ): Promise<ThreadResponseDto> {
     const thread = await this.findOneEntity(id);
+    if (thread.author !== username) {
+      throw new ForbiddenException('You can only edit your own threads');
+    }
     Object.assign(thread, dto);
     const savedThread = await this.threads.save(thread);
     return plainToInstance(ThreadResponseDto, savedThread, {
@@ -100,8 +119,11 @@ export class ThreadsService {
     });
   }
 
-  async delete(id: string): Promise<void> {
-    await this.findOne(id);
+  async delete(id: string, username: string): Promise<void> {
+    const thread = await this.findOneEntity(id);
+    if (thread.author !== username) {
+      throw new ForbiddenException('You can only delete your own threads');
+    }
     await this.threads.delete(id);
   }
 }

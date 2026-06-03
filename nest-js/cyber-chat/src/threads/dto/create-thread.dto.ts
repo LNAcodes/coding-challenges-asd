@@ -11,8 +11,10 @@ export class CreateThreadDto {
   @MaxLength(1000)
   body: string;
 
+  /*
   @IsString()
   @IsNotEmpty()
   @MaxLength(100)
   author: string;
+  */
 }

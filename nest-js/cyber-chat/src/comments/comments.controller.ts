@@ -6,8 +6,10 @@ import {
   ParseUUIDPipe,
   HttpCode,
   HttpStatus,
+  Request,
 } from '@nestjs/common';
 import { CommentsService } from './comments.service';
+import type { AuthenticatedRequest } from '../common/types/authenticated-request.type';
 
 @Controller('comments')
 export class CommentsController {
@@ -20,7 +22,10 @@ export class CommentsController {
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  delete(@Param('id', ParseUUIDPipe) id: string) {
+  delete(
+    @Request() request: AuthenticatedRequest,
+    @Param('id', ParseUUIDPipe) id: string,
+  ) {
     return this.commentsService.softDelete(id);
   }
 }
