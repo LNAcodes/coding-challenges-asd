@@ -10,7 +10,14 @@ import {
 } from '@nestjs/common';
 import { CommentsService } from './comments.service';
 import type { AuthenticatedRequest } from '../common/types/authenticated-request.type';
-import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiForbiddenResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 
 @ApiBearerAuth()
 @Controller('comments')
@@ -19,15 +26,23 @@ export class CommentsController {
 
   @Get(':id')
   @ApiOperation({ summary: 'Show one comment' })
+  @ApiOkResponse({ description: 'Returns comment' })
+  @ApiNotFoundResponse({ description: 'Comment not found' })
+  @ApiUnauthorizedResponse({ description: 'No valid JWT token' })
   FindOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.commentsService.findOne(id);
   }
 
   @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({
     summary: 'Soft delete a comment',
   })
-  @HttpCode(HttpStatus.NO_CONTENT)
+  @ApiNotFoundResponse({ description: 'Comment not found' })
+  @ApiUnauthorizedResponse({ description: 'No valid JWT token' })
+  @ApiForbiddenResponse({
+    description: 'You can only delete your own comments',
+  })
   delete(
     @Req() request: AuthenticatedRequest,
     @Param('id', ParseUUIDPipe) id: string,
