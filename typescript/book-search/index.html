@@ -3,13 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <title>Book Search</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
     <script type="module" defer src="dist/main.js"></script>
   </head>
   <body>
+    <button id="helloBtn">Say Hello</button>
+    <p id="output"></p>
     <form id="search-form">
       <input name="query" type="text" placeholder="Enter a book title" />
       <button>Search</button>
     </form>
     <ul id="book-list"></ul>
+    <input type="text" id="nameInput" placeholder="Enter name" />
+    <button id="submitButton">Submit</button>
+    <p id="displayName"></p>
+    <button id="toggleButton">Toggle</button>
+    <p id="hiddenText">Now you see me!</p>
+    <input type="text" id="itemInput" />
+    <button id="addButton">Add Item</button>
+    <ul id="itemList"></ul>
+    <button id="decreaseButton">-</button>
+    <span id="counter">0</span>
+    <button id="increaseButton">+</button>
+    <select id="colorSelect">
+      <option value="white">White</option>
+      <option value="lightblue">Light Blue</option>
+      <option value="lightgreen">Light Green</option>
+    </select>
+    <div
+      id="colorBox"
+      style="width: 100px; height: 100px; border: 1px solid black"
+    ></div>
+    <textarea id="textInput"></textarea>
+    <p id="charCount">0 characters</p>
   </body>
 </html>
