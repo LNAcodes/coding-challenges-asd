@@ -9,5 +9,9 @@
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "nodemonConfig": {
+    "ext": "ts, txt",
+    "exec": "bun run index.ts"
   }
 }
