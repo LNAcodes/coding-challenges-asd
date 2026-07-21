@@ -4,14 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec tsx src/main.ts"
+    "dev": "bun --watch src/main.ts"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "devDependencies": {
-    "nodemon": "^3.1.14",
-    "tsx": "^4.21.0"
-  }
+  "license": "ISC"
 }
