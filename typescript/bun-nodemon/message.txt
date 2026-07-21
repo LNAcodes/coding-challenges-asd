@@ -1,0 +1,7 @@
+Hello World!
+Let's test if bun really won't react
+So bun worked as soon as I have added a nodemon.json file and have defined what should be executed and specifically should be watched (extended watch-list)
+now I will test it without nodemon, and just with bun --watch index.ts
+it doesnt work.
+let's test it with nodemon again
+then it works and shows again. Lesson learned. bun has it limits

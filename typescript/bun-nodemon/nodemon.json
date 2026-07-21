@@ -1,0 +1,4 @@
+{
+  "ext": "ts,txt",
+  "exec": "bun run index.ts"
+}
