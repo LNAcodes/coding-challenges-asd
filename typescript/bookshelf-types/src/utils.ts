@@ -10,7 +10,23 @@ groupBy<T, K extends keyof T>(items: T[], key: K): Record<string, T[]> takes an 
 function groupBy<T, K extends keyof T>(
   items: T[],
   key: K,
-): Record<string, T[]> {}
+): Record<string, T[]> {
+  const result: Record<string, T[]> = {};
+
+  for (const item of items) {
+    // get the key from the item, key of object must always be a string!!!
+    const groupKey = String(item[key]);
+
+    // is the key in the result-object?
+    if (!result[groupKey]) {
+      // no -> make a new empty array
+      result[groupKey] = [];
+    }
+    // füge das Item dem Array hinzu
+    result[groupKey].push(item);
+  }
+  return result;
+}
 
 /*
 pluck<T, K extends keyof T>(items: T[], key: K): T[K][] takes an array and a property name, then returns an array containing just that property’s value from each item. Example: extracting all book titles.

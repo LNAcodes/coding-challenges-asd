@@ -21,7 +21,7 @@ export type HasId = {
 
 export type Book = HasId & Timestamped & BookFields;
 
-export type Bookfields = {
+export type BookFields = {
   title: string;
   author: string;
   isbn: string;
@@ -42,7 +42,9 @@ Define a generic ApiResponse<T> interface with status: number, message: string, 
 
 export type BookCreatePayload = Omit<Book, "id" | "createdAt" | "updatedAt">;
 
-export type BookUpdatePayload = Partial<Book>;
+export type BookUpdatePayload = Partial<
+  Omit<Book, "id" | "createdAt" | "updatedAt">
+>;
 
 export type BookPreview = Pick<Book, "id" | "title" | "author">;
 

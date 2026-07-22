@@ -11,7 +11,7 @@ import type {
   BookCreatePayload,
   BookUpdatePayload,
   IsbnParts,
-  Bookfields,
+  BookFields,
   EntityId,
   Timestamped,
   HasId,
