@@ -1,3 +1,4 @@
+import type { Book } from "../types/book";
 /*
 Generic collection utilities
 Write three generic utility functions that work with any object type. Test each one using an array of Book objects.
@@ -56,4 +57,65 @@ function merge<T>(base: T, update: Partial<T>): T {
 
 /*
 Each function must be generic, fully annotated, and work with any object type, not just Book.
+*/
+
+const testBooks: Book[] = [
+  {
+    id: 1,
+    title: "The Fellowship of the Ring",
+    author: "J.R.R. Tolkien",
+    isbn: "978-0261102354",
+    isAvailable: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: 2,
+    title: "Outline",
+    author: "Rachel Cusk",
+    isbn: "978-0374534011",
+    isAvailable: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: 3,
+    title: "Transit",
+    author: "Rachel Cusk",
+    isbn: "978-0374537340",
+    isAvailable: false,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: 4,
+    title: "Kudos",
+    author: "Rachel Cusk",
+    isbn: "978-0374182939",
+    isAvailable: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: 5,
+    title: "Second Place",
+    author: "Rachel Cusk",
+    isbn: "978-0374538279",
+    isAvailable: false,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+];
+
+// console.log("groupBy author:", groupBy(testBooks, "author"));
+
+// console.log("pluck titles:", pluck(testBooks, "title"));
+
+/* console.log(
+  "merge:",
+  merge(testBooks[0], { title: "The Two Towers", isAvailable: false }),
+);
+{ ...base, ...update }
+= all fields from Fellowship of the Ring
++ title and isAvailable get overwritten
 */
