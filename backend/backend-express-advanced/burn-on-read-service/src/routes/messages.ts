@@ -14,7 +14,7 @@ router.post("/messages", async (req, res) => {
   const filePath = path.join(process.cwd(), "messages", `${messageId}.txt`);
   await writeFile(filePath, sanitizedMessage);
 
-  res.send("ok");
+  res.render("success.html", { messageId });
 });
 
 export default router;
