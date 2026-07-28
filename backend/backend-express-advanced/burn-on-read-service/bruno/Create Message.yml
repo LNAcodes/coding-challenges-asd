@@ -1,0 +1,20 @@
+info:
+  name: Create Message
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/messages"
+  body:
+    type: form-urlencoded
+    data:
+      - name: message
+        value: hello secret
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
