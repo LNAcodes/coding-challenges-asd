@@ -24,13 +24,16 @@ router.get("/messages/:id", async (req, res) => {
   const filePath = path.join(process.cwd(), "messages", `${id}.txt`);
   // console.log("FilePath:", filePath);
 
-  const message = await readFile(filePath, { encoding: "utf-8" });
-  // console.log("Decoded message:", message);
-
-  await unlink(filePath);
-  console.log("Deleting file:", filePath);
-
-  res.render("detail.html", { message });
+  try {
+    const message = await readFile(filePath, { encoding: "utf-8" });
+    // console.log("Decoded message:", message);
+    await unlink(filePath);
+    // console.log("Deleting file:", filePath);
+    res.render("detail.html", { message });
+  } catch (error) {
+    res.status(404).render("404.html");
+    // console.log("Error message:", 404);
+  }
 });
 
 export default router;
