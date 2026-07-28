@@ -14,7 +14,7 @@ router.post("/messages", async (req, res) => {
   const filePath = path.join(process.cwd(), "messages", `${messageId}.txt`);
   await writeFile(filePath, sanitizedMessage);
 
-  res.render("success.html", { messageId });
+  res.render("success.njk", { messageId });
 });
 
 router.get("/messages/:id", async (req, res) => {
@@ -29,9 +29,9 @@ router.get("/messages/:id", async (req, res) => {
     // console.log("Decoded message:", message);
     await unlink(filePath);
     // console.log("Deleting file:", filePath);
-    res.render("detail.html", { message });
+    res.render("detail.njk", { message });
   } catch (error) {
-    res.status(404).render("404.html");
+    res.status(404).render("404.njk");
     // console.log("Error message:", 404);
   }
 });
