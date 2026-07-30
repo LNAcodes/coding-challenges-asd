@@ -17,7 +17,7 @@ app.use(messagesRouter);
 
 const port = process.env.PORT || "3000";
 
-nunjucks.configure(path.join(projectRott, "views"), {
+nunjucks.configure("views", {
   autoescape: true,
   express: app,
 });
