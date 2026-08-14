@@ -54,23 +54,25 @@ const quotes = [
   },
 ];
 
+export interface Quote {
+  id: number;
+  quote: string;
+  author: string;
+}
 @Injectable()
 export class QuotesService {
-  getAllQuotes(): object[] {
+  getAllQuotes(): Quote[] {
     return quotes;
   }
 
-  getRandomQuotes(): object {
+  getRandomQuotes(): Quote {
     const allQuotes = this.getAllQuotes();
     const randomIndex = Math.floor(Math.random() * allQuotes.length);
     const randomQuotes = allQuotes[randomIndex];
     return randomQuotes;
   }
 
-  getQuotesByAuthor(author: string): object[] {
-    return this.getAllQuotes().filter(
-      (quotes) =>
-
-    )
+  getQuotesByAuthor(author: string): Quote[] {
+    return this.getAllQuotes().filter((quotes) => quotes.author === author);
   }
 }
