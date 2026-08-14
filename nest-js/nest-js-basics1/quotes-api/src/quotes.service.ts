@@ -73,6 +73,9 @@ export class QuotesService {
   }
 
   getQuotesByAuthor(author: string): Quote[] {
-    return this.getAllQuotes().filter((quotes) => quotes.author === author);
+    console.log('Filtering by author:', author);
+    return this.getAllQuotes().filter((quotes) => {
+      return quotes.author.toLowerCase().includes(author.toLowerCase());
+    });
   }
 }

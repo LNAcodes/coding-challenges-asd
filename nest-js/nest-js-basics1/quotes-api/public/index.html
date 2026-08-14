@@ -3,7 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <title>Quotes API</title>
   </head>
-  <body></body>
+  <body>
+    <main class="container">
+      <h1>Quotes</h1>
+
+      <input type="text" id="authorFilter" placeholder="Filter by author..." />
+
+      <ul id="quotesList"></ul>
+    </main>
+
+    <script>
+      const list = document.getElementById('quotesList');
+      const filterInput = document.getElementById('authorFilter');
+
+      async function fetchQuotes(author = '') {
+        const url = author
+          ? `/quotes?author=${encodeURIComponent(author)}`
+          : '/quotes';
+
+        console.log('Fetching:', url);
+
+        const response = await fetch(url);
+        const quotes = await response.json();
+        console.log('Quotes received:', quotes);
+
+        list.innerHTML = quotes
+          .map(
+            (quote) => `
+            <li>
+              <strong>${quote.author}</strong>
+              <p>${quote.quote}</p>
+            </li>
+          `,
+          )
+          .join('');
+      }
+
+      filterInput.addEventListener('input', (event) => {
+        fetchQuotes(event.target.value);
+      });
+
+      fetchQuotes();
+    </script>
+  </body>
 </html>
