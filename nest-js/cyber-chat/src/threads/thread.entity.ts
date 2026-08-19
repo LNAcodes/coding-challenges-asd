@@ -25,6 +25,7 @@ export class Thread {
   @CreateDateColumn({ type: 'datetime' })
   createdAt: Date;
 
+  // I know I have many comments
   @OneToMany(() => Comment, (comment) => comment.thread)
   comments: Comment[];
 }

@@ -17,9 +17,9 @@ import { JwtAuthGuard } from './auth/jwt-auth.guard';
   imports: [
     TypeOrmModule.forRoot({
       type: 'better-sqlite3',
-      database: 'cyberchat.sqlite',
+      database: 'database/cyberchat.sqlite',
       entities: [Thread, Comment, User],
-      synchronize: true,
+      synchronize: false,
       logging: false,
       enableWAL: true,
       statementCacheSize: 100,

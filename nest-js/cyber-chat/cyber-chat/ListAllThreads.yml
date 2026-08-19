@@ -6,7 +6,9 @@ info:
 http:
   method: GET
   url: "{{baseURL}}threads"
-  auth: inherit
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhYmJlZGFlMi0wOWVkLTQ1ZWEtOWMyYi0wNjRjZmM1MmJmMzMiLCJ1c2VybmFtZSI6InVzZXIzIiwiaWF0IjoxNzgwNDkyNDY0LCJleHAiOjE3ODA0OTYwNjR9.b1CwG03qMiXDtUqfOJE0lxDGOmWQZKsvdBColI2MtcA
 
 settings:
   encodeUrl: true

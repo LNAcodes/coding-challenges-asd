@@ -11,10 +11,11 @@ http:
     data: |-
       {
         "title": "Erster Thread",
-        "body": "Das ist ein Testthread",
-        "author": "lna"
+        "body": "Das ist ein Testthread"
       }
-  auth: inherit
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NGMzN2UyMC0xOTBiLTQwYmEtYWYxMy02ZmM3ZDNlODIxYjMiLCJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNzgwNDc5OTI1LCJleHAiOjE3ODA0ODM1MjV9.BfDAvc-vKn-bUQvsp8ZEmP1qKNp3s-bWTvuaTDAYFts
 
 settings:
   encodeUrl: true

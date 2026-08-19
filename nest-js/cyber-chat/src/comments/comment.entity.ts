@@ -22,6 +22,7 @@ export class Comment {
   @CreateDateColumn({ type: 'datetime' })
   createdAt: Date;
 
+  // I as a comment belong to one thread
   @ManyToOne(() => Thread, (thread) => thread.comments)
   thread: Thread;
 }

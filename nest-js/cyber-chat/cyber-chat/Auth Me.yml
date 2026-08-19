@@ -9,7 +9,9 @@ http:
   headers:
     - name: TestUser
       value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyNmJhNWE1Zi1mNDRlLTRhYjEtODQ2MS1kZTUzYTAzZWIyZjQiLCJ1c2VybmFtZSI6InRlc3R1c2VyIiwiaWF0IjoxNzgwNDExODEyLCJleHAiOjE3ODA0MTU0MTJ9.o_EMHwvN5t0p8WrWGIuSx4tpzYAfp6JndjKwnLZgb2k
-  auth: inherit
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyNmJhNWE1Zi1mNDRlLTRhYjEtODQ2MS1kZTUzYTAzZWIyZjQiLCJ1c2VybmFtZSI6InRlc3R1c2VyIiwiaWF0IjoxNzgwNDExODEyLCJleHAiOjE3ODA0MTU0MTJ9.o_EMHwvN5t0p8WrWGIuSx4tpzYAfp6JndjKwnLZgb2k
 
 settings:
   encodeUrl: true

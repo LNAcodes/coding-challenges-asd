@@ -6,7 +6,16 @@ info:
 http:
   method: POST
   url: "{{baseURL}}auth/login"
-  auth: inherit
+  body:
+    type: json
+    data: |-
+      {
+        "username": "user3",
+        "password": "geheim1234"
+      }
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NGMzN2UyMC0xOTBiLTQwYmEtYWYxMy02ZmM3ZDNlODIxYjMiLCJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNzgwNDgwMTk5LCJleHAiOjE3ODA0ODM3OTl9.p98sESboCoF76-Kim-IbChuY8DS64sxb-2qm-154bR8
 
 settings:
   encodeUrl: true

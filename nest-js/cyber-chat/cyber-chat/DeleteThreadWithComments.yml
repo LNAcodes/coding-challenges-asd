@@ -5,8 +5,10 @@ info:
 
 http:
   method: DELETE
-  url: "{{baseURL}}threads/741fbf6b-07f8-4975-9fe3-4624445e114c"
-  auth: inherit
+  url: "{{baseURL}}threads/87e315ae-f2fa-44e3-9c39-2299730172cc"
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NGMzN2UyMC0xOTBiLTQwYmEtYWYxMy02ZmM3ZDNlODIxYjMiLCJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNzgwNDgwMTk5LCJleHAiOjE3ODA0ODM3OTl9.p98sESboCoF76-Kim-IbChuY8DS64sxb-2qm-154bR
 
 settings:
   encodeUrl: true

@@ -5,3 +5,4 @@ now I will test it without nodemon, and just with bun --watch index.ts
 it doesnt work.
 let's test it with nodemon again
 then it works and shows again. Lesson learned. bun has it limits
+does something change
