@@ -22,7 +22,7 @@ export class Thread {
   @Column({ type: 'varchar', length: 100 })
   author: string;
 
-  @CreateDateColumn({ type: 'datetime' })
+  @CreateDateColumn({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
 
   // I know I have many comments
