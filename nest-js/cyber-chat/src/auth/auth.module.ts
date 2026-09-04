@@ -8,6 +8,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { LocalStrategy } from './local.strategy';
 import { JwtStrategy } from './jwt.strategy';
 
+//This module is the single place where login logic lives. It validates credentials, issues tokens, and defines the rules for how incoming JWTs are verified on protected requests.
 @Module({
   imports: [
     UsersModule,

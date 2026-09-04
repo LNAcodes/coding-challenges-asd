@@ -11,7 +11,15 @@ export class User {
   @Expose()
   username: string;
 
+  @Column({ type: 'simple-array', default: 'user' })
+  @Expose()
+  roles: string[];
+
   @Column()
   @Exclude()
   passwordHash: string;
+
+  @Column()
+  @Exclude()
+  jwtSalt: string;
 }

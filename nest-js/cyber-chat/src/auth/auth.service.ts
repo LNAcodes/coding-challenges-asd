@@ -19,10 +19,21 @@ export class AuthService {
     return null;
   }
 
-  login(user: { userId: string; username: string }) {
-    const payload = { sub: user.userId, username: user.username };
+  login(user: {
+    userId: string;
+    username: string;
+    roles: string[];
+    jwtSalt: string;
+  }) {
+    const payload = {
+      sub: user.userId,
+      username: user.username,
+      roles: user.roles,
+    };
     return {
-      access_token: this.jwtService.sign(payload),
+      access_token: this.jwtService.sign(payload, {
+        secret: process.env.JWT_SECRET + user.jwtSalt,
+      }),
     };
   }
 }
