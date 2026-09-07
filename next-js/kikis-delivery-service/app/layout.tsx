@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Cherry_Bomb_One } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,6 +12,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const cherryBomb = Cherry_Bomb_One({
+  weight: "400",
+  variable: "--font-cherry-bomb-one",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: "Kiki's Delivery Service",
   description: "Fast, reliable deliveries across the city.",
@@ -19,10 +25,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} ${cherryBomb.variable}`}
+    >
       <body>
         <header>
-          <h1>Kiki's Delivery Service</h1>
+          <h1 style={{ fontFamily: "var(--font-cherry-bomb-one)" }}>
+            Kiki's Delivery Service
+          </h1>
         </header>
         {children}
       </body>
