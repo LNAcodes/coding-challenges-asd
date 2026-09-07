@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 export default function Error({
   error,
   reset,
@@ -12,6 +14,7 @@ export default function Error({
       <h2>Could not load this delivery.</h2>
       <p>{error.message}</p>
       <button onClick={reset}>Try again</button>
+      <Link href="/deliveries">← Back to all deliveries</Link>
     </div>
   );
 }

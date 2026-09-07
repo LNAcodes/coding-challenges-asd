@@ -1,6 +1,5 @@
 import { getAllDeliveries } from "@/lib/services/deliveriesService";
 import Link from "next/link";
-import Link from "next/link";
 
 export default async function DeliveriesPage() {
   const deliveries = await getAllDeliveries(); // calls separate Backend API or makes a direct database query
