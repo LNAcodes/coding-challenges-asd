@@ -31,3 +31,23 @@ export function getAllDeliveries(): DeliveryRequest[] {
 export function getDeliveryById(id: string): DeliveryRequest | null {
   return deliveries.find((d) => d.id === id) || null;
 }
+
+export async function createDelivery({
+  // function that takes an object als only parameter, destructering into pickup and destination
+  pickup,
+  destination,
+}: {
+  pickup: string;
+  destination: string;
+}): Promise<DeliveryRequest> {
+  // DeliveryRequest-object: Array, id: String(... +1) > number to string +1up, pickup+destination variable keys, status: every delivery starts with status active
+  const newDelivery: DeliveryRequest = {
+    id: String(deliveries.length + 1),
+    pickup,
+    destination,
+    status: "active",
+  };
+  // pushes new object at the end of the array
+  deliveries.push(newDelivery);
+  return newDelivery;
+}
