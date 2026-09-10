@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { DeliveryRequest } from "@/lib/services/deliveriesService";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
 export default function DeliveryFilter({
   deliveries,
@@ -24,13 +25,19 @@ export default function DeliveryFilter({
         <option value="denied">Denied</option>
         <option value="fulfilled">Fulfilled</option>
       </select>
-      <ul>
+
+      <div className="grid gap-4 py-4">
         {visible.map((d) => (
-          <li key={d.id}>
-            {d.pickup} to {d.destination} ({d.status})
-          </li>
+          <Card key={d.id}>
+            <CardHeader>
+              <CardTitle>
+                {d.pickup} to {d.destination}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>Status: ({d.status})</CardContent>
+          </Card>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

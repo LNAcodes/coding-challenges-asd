@@ -17,7 +17,6 @@ export default async function DeliveriesPage() {
           </li>
         ))}
       </ul> */}
-      <h1>All Deliveries</h1>
       <DeliveryFilter deliveries={deliveries} />
     </div>
   );
